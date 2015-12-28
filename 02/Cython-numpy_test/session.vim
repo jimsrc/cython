@@ -289,10 +289,10 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +0 multiply.pyx
-badd +0 makefile
-badd +0 setup.py
-badd +0 c_multiply.c
+badd +1 multiply.pyx
+badd +1 makefile
+badd +1 setup.py
+badd +1 c_multiply.c
 args multiply.pyx
 edit makefile
 set splitbelow splitright
@@ -302,8 +302,8 @@ vsplit
 wincmd w
 wincmd t
 set winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 89 + 90) / 180)
-exe 'vert 2resize ' . ((&columns * 90 + 90) / 180)
+exe 'vert 1resize ' . ((&columns * 89 + 90) / 181)
+exe 'vert 2resize ' . ((&columns * 91 + 90) / 181)
 argglobal
 xnoremap <buffer> <silent> \a} `>a}`<i{
 xnoremap <buffer> <silent> \a{ `>a}`<i{
@@ -417,7 +417,7 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 1 - ((0 * winheight(0) + 24) / 48)
+let s:l = 1 - ((0 * winheight(0) + 24) / 49)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -539,15 +539,15 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 1 - ((0 * winheight(0) + 24) / 48)
+let s:l = 1 - ((0 * winheight(0) + 24) / 49)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 1
 normal! 0
 wincmd w
-exe 'vert 1resize ' . ((&columns * 89 + 90) / 180)
-exe 'vert 2resize ' . ((&columns * 90 + 90) / 180)
+exe 'vert 1resize ' . ((&columns * 89 + 90) / 181)
+exe 'vert 2resize ' . ((&columns * 91 + 90) / 181)
 tabedit multiply.pyx
 set splitbelow splitright
 wincmd _ | wincmd |
@@ -556,8 +556,8 @@ vsplit
 wincmd w
 wincmd t
 set winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 89 + 90) / 180)
-exe 'vert 2resize ' . ((&columns * 90 + 90) / 180)
+exe 'vert 1resize ' . ((&columns * 89 + 90) / 181)
+exe 'vert 2resize ' . ((&columns * 91 + 90) / 181)
 argglobal
 vnoremap <buffer> 	 :py isort_visual()
 xnoremap <buffer> <silent> \a} `>a}`<i{
@@ -672,12 +672,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 33 - ((28 * winheight(0) + 24) / 48)
+let s:l = 37 - ((36 * winheight(0) + 24) / 49)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-33
-normal! 0
+37
+normal! 015l
 wincmd w
 argglobal
 edit c_multiply.c
@@ -793,15 +793,15 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 35 - ((34 * winheight(0) + 24) / 48)
+let s:l = 33 - ((32 * winheight(0) + 24) / 49)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-35
+33
 normal! 04l
 wincmd w
-exe 'vert 1resize ' . ((&columns * 89 + 90) / 180)
-exe 'vert 2resize ' . ((&columns * 90 + 90) / 180)
+exe 'vert 1resize ' . ((&columns * 89 + 90) / 181)
+exe 'vert 2resize ' . ((&columns * 91 + 90) / 181)
 tabnext 2
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf
