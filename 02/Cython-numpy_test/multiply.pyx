@@ -9,7 +9,8 @@ the C function: c_multiply multiplies all the values in a 2-d array by a scalar,
 
 import cython
 from cython.operator cimport dereference as deref
-
+#import cython.ctypes as cc
+#from cython import double as Doub
 import ctypes as C
 from ctypes.util import find_library
 from ctypes import (
@@ -61,6 +62,7 @@ def get_array2(double value, int m, int n):
         double* a
     #print " ---> a: ", type(a)
 
+    # http://stackoverflow.com/questions/23930671/how-to-create-n-dim-numpy-array-from-a-pointer
     lib = C.CDLL('./multiply.so')
     #print " --> dir: ", dir(lib.c_gen2)  # imprime atributos
     lib.c_gen2.restype  = ndpointer(dtype=C.c_double, shape=(m*n,))
@@ -70,6 +72,7 @@ def get_array2(double value, int m, int n):
     print " ---> res.type: ", type(res)
     print " ---> res.dt: ", res.dtype
 
+    #print dict(np)  # no lo lee :\
     #c_gen(value, m, n, C.byref(data_pointer))
 
     return None
