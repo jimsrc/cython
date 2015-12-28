@@ -19,6 +19,22 @@ void c_multiply (double* array, double multiplier, int m, int n) {
     return ;
 }
 
+//double* c_gen2 (double multiplier, int m, int n) {
+double* c_gen2 (int m, int n) {
+    double *array;
+    array = calloc(m*n, sizeof(double)); //new double[m*n];
+    int i, j;
+    int index = 0 ;
+    
+    for (i = 0; i < m; i++) {
+        for (j = 0; j < n; j++) {
+            array[index] = array[index]*2.;  //* multiplier ;
+            index ++ ;
+        }
+    }
+    return array;
+}
+
 void c_gen (double multiplier, int m, int n, double *array) {
     int i, j;
     int index = 0 ;
