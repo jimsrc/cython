@@ -24,9 +24,8 @@ cimport numpy as np
 
 # declare the interface to the C code
 cdef extern void c_multiply (double* array, double value, int m, int n) 
-#cdef extern double* c_gen (double multiplier, int m, int n)
 cdef extern void c_gen (double multiplier, int m, int n, double *array)
-cdef extern double* c_gen2 (int m, int n)
+cdef extern double* c_gen2 (int m, int n, double value)
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
@@ -63,8 +62,10 @@ def get_array2(double value, int m, int n):
     #print " ---> a: ", type(a)
 
     lib = C.CDLL('./multiply.so')
-    lib.c_gen2.restype = ndpointer(dtype=C.c_double, shape=(m*n,))
-    res = lib.c_gen2(m, n)
+    #print " --> dir: ", dir(lib.c_gen2)  # imprime atributos
+    lib.c_gen2.restype  = ndpointer(dtype=C.c_double, shape=(m*n,))
+    lib.c_gen2.argtypes = [c_int, c_int, c_double]
+    res = lib.c_gen2(m, n, value)
     print " ---> res: ", res
     print " ---> res.type: ", type(res)
     print " ---> res.dt: ", res.dtype

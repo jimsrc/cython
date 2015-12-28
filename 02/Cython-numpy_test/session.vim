@@ -679,12 +679,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 29 - ((19 * winheight(0) + 12) / 24)
+let s:l = 28 - ((18 * winheight(0) + 12) / 24)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-29
-normal! 027l
+28
+normal! 047l
 wincmd w
 argglobal
 edit multiply.pyx
@@ -801,12 +801,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 61 - ((11 * winheight(0) + 12) / 24)
+let s:l = 68 - ((15 * winheight(0) + 12) / 24)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-61
-normal! 04l
+68
+normal! 032l
 wincmd w
 argglobal
 edit c_multiply.c
@@ -922,14 +922,14 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 23 - ((22 * winheight(0) + 24) / 49)
+let s:l = 31 - ((30 * winheight(0) + 24) / 49)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-23
-normal! 015l
+31
+normal! 040l
 wincmd w
-2wincmd w
+3wincmd w
 exe '1resize ' . ((&lines * 24 + 26) / 52)
 exe 'vert 1resize ' . ((&columns * 89 + 90) / 181)
 exe '2resize ' . ((&lines * 24 + 26) / 52)
