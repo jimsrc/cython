@@ -7,7 +7,6 @@ simple C function that alters data passed in via a pointer
 */
 
 void c_multiply (double* array, double multiplier, int m, int n) {
-    
     int i, j ;
     int index = 0 ;
     
@@ -18,6 +17,18 @@ void c_multiply (double* array, double multiplier, int m, int n) {
             }
         }
     return ;
+}
+
+void c_gen (double multiplier, int m, int n, double *array) {
+    int i, j;
+    int index = 0 ;
+    
+    for (i = 0; i < m; i++) {
+        for (j = 0; j < n; j++) {
+            array[index] = array[index]  * multiplier ;
+            index ++ ;
+        }
+    }
 }
 
 /*
