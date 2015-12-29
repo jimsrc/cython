@@ -1,0 +1,7 @@
+sources:
+http://gael-varoquaux.info/programming/cython-example-of-exposing-c-computed-arrays-in-python-without-data-copies.html
+https://gist.github.com/jimsrc/8e8c74d2e8fc12841e34
+http://docs.scipy.org/doc/numpy/user/c-info.how-to-extend.html#PyArray_SimpleNewFromData
+https://docs.python.org/2.7/c-api/structures.html#c.PyObject
+
+
