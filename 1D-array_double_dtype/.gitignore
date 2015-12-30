@@ -1,0 +1,5 @@
+bare_zip_original
+*.pyc
+*.so
+*.o
+build
