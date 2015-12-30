@@ -18,8 +18,9 @@ def configuration(parent_package='', top_path=None):
     config = Configuration('', parent_package, top_path)
     config.add_extension('cython_wrapper',
                          sources=['cython_wrapper.pyx'],
+                         language="c++",
                          # libraries=['m'],
-                         depends=['c_code.c'],
+                         depends=['c_code.cpp'],
                          include_dirs=[numpy.get_include()])
     return config
 

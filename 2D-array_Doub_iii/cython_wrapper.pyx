@@ -5,12 +5,12 @@ Cython enables mixing C-level calls and Python-level calls in the same
 file with a Python-like syntax and easy type cohersion. See 
 http://cython.org for more information
 """
-
+# distutils: language = c++
 # Author: Gael Varoquaux
 # License: BSD
 
 # Declare the prototype of the C function we are interested in calling
-cdef extern from "c_code.c":
+cdef extern from "c_code.cpp":
     double *compute(int size)
     double **compute_2d(int nx, int ny)
     double *compute_2d_ii(int nx, int ny)

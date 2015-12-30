@@ -53,7 +53,8 @@ double **AllocMat(int nRows, int nCols){
 
 double *compute(int size){
     double* array;
-    array = malloc(sizeof(double)*size);
+    //array = malloc(sizeof(double)*size); // OK with C
+    array = (double*) malloc(sizeof(double)*size);  // ok with c++
     int i;
     for (i=0; i<size; i++){
         array[i] = i;
@@ -74,17 +75,39 @@ double **compute_2d(int nx, int ny){
     return array;
 }
 
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++
+class array2d{
+    private:
+        double* m;
+
+    public:
+        int nrows, ncols;
+        array2d(int nr, int nc): nrows(nr), ncols(nc) { 
+            m = (double*) malloc(nr*nc*sizeof(double));
+        }
+        double* operator[](const int i){ 
+            return &m[i*ncols]; 
+        } //i'th element (must be a pointer)
+};
+/*
+inline T & NRvector<T>::operator[](const int i){ //subscripting
+    return &m[i*ncols];
+}*/
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 
 double *compute_2d_ii(int nx, int ny){
-    double *array;
-    array = malloc(nx*ny*sizeof(double));
+    array2d array(nx, ny);
+    //double *array;
+    //array = (double*) malloc(nx*ny*sizeof(double));
     int i, j;
     for (i=0; i<nx; i++){
         for (j=0; j<ny; j++){
-            array[i*ny+j] = 1.*(i+j);
+            //array[i*ny+j] = 1.*(i+j);
+            array[i][j] = 1.*(i+j);
         }
     }
-    return &array[0];
+    return &(array[0][0]); //&array[0];
 }
 
 /*

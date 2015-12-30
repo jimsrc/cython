@@ -251,7 +251,7 @@ class __Pyx_FakeReference {
 #include <math.h>
 #define __PYX_HAVE__cython_wrapper
 #define __PYX_HAVE_API__cython_wrapper
-#include "c_code.c"
+#include "c_code.cpp"
 #include "string.h"
 #include "stdlib.h"
 #include "stdio.h"
