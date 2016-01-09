@@ -132,6 +132,8 @@ xmap gS <Plug>VgSurround
 xnoremap <silent> p :YRPaste 'p', 'v'
 nnoremap <silent> p :YRPaste 'p'
 map pa :set paste
+map rh :resize
+map rw :vertical resize
 nnoremap <silent> tl :TMToggle
 nnoremap <silent> tf :TMFocus
 map te :tabedit %
@@ -280,6 +282,7 @@ set undofile
 set viminfo='100,<50,s10,h,n~/.vim/dirs/viminfo
 set wildignore=*.pyc
 set wildmode=list:longest
+set window=48
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
@@ -289,8 +292,9 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
 endif
 set shortmess=aoO
 badd +141 cython_wrapper.pyx
-badd +1 test.py
+badd +15 test.py
 badd +1 c_code.c
+badd +0 c_code.cpp
 args cython_wrapper.pyx
 edit cython_wrapper.pyx
 set splitbelow splitright
@@ -304,11 +308,11 @@ wincmd w
 wincmd w
 wincmd t
 set winheight=1 winwidth=1
-exe '1resize ' . ((&lines * 27 + 28) / 57)
-exe 'vert 1resize ' . ((&columns * 111 + 112) / 225)
-exe '2resize ' . ((&lines * 26 + 28) / 57)
-exe 'vert 2resize ' . ((&columns * 111 + 112) / 225)
-exe 'vert 3resize ' . ((&columns * 113 + 112) / 225)
+exe '1resize ' . ((&lines * 19 + 24) / 49)
+exe 'vert 1resize ' . ((&columns * 85 + 86) / 172)
+exe '2resize ' . ((&lines * 26 + 24) / 49)
+exe 'vert 2resize ' . ((&columns * 85 + 86) / 172)
+exe 'vert 3resize ' . ((&columns * 86 + 86) / 172)
 argglobal
 vnoremap <buffer> 	 :py isort_visual()
 xnoremap <buffer> <silent> \a} `>a}`<i{
@@ -423,7 +427,7 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 16 - ((15 * winheight(0) + 13) / 27)
+let s:l = 16 - ((9 * winheight(0) + 9) / 19)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -545,7 +549,7 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 66 - ((3 * winheight(0) + 13) / 26)
+let s:l = 66 - ((12 * winheight(0) + 13) / 26)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -667,19 +671,18 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 148 - ((44 * winheight(0) + 27) / 54)
+let s:l = 148 - ((4 * winheight(0) + 23) / 46)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 148
 normal! 024l
 wincmd w
-3wincmd w
-exe '1resize ' . ((&lines * 27 + 28) / 57)
-exe 'vert 1resize ' . ((&columns * 111 + 112) / 225)
-exe '2resize ' . ((&lines * 26 + 28) / 57)
-exe 'vert 2resize ' . ((&columns * 111 + 112) / 225)
-exe 'vert 3resize ' . ((&columns * 113 + 112) / 225)
+exe '1resize ' . ((&lines * 19 + 24) / 49)
+exe 'vert 1resize ' . ((&columns * 85 + 86) / 172)
+exe '2resize ' . ((&lines * 26 + 24) / 49)
+exe 'vert 2resize ' . ((&columns * 85 + 86) / 172)
+exe 'vert 3resize ' . ((&columns * 86 + 86) / 172)
 tabedit test.py
 set splitbelow splitright
 wincmd _ | wincmd |
@@ -688,8 +691,8 @@ vsplit
 wincmd w
 wincmd t
 set winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 110 + 112) / 225)
-exe 'vert 2resize ' . ((&columns * 114 + 112) / 225)
+exe 'vert 1resize ' . ((&columns * 84 + 86) / 172)
+exe 'vert 2resize ' . ((&columns * 87 + 86) / 172)
 argglobal
 vnoremap <buffer> 	 :py isort_visual()
 xnoremap <buffer> <silent> \a} `>a}`<i{
@@ -804,7 +807,7 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 15 - ((14 * winheight(0) + 27) / 54)
+let s:l = 15 - ((12 * winheight(0) + 23) / 46)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -812,7 +815,7 @@ normal! zt
 normal! 034l
 wincmd w
 argglobal
-edit c_code.c
+edit c_code.cpp
 xnoremap <buffer> <silent> \a} `>a}`<i{
 xnoremap <buffer> <silent> \a{ `>a}`<i{
 xnoremap <buffer> <silent> \a) `>a)`<i(
@@ -853,8 +856,8 @@ setlocal nodiff
 setlocal equalprg=
 setlocal errorformat=
 setlocal expandtab
-if &filetype != 'c'
-setlocal filetype=c
+if &filetype != 'cpp'
+setlocal filetype=cpp
 endif
 setlocal foldcolumn=0
 setlocal foldenable
@@ -912,8 +915,8 @@ setlocal statusline=%!airline#statusline(2)
 setlocal suffixesadd=
 setlocal swapfile
 setlocal synmaxcol=3000
-if &syntax != 'c'
-setlocal syntax=c
+if &syntax != 'cpp'
+setlocal syntax=cpp
 endif
 setlocal tabstop=4
 setlocal tags=
@@ -925,17 +928,17 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 78 - ((27 * winheight(0) + 27) / 54)
+let s:l = 38 - ((21 * winheight(0) + 23) / 46)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-78
-normal! 020l
+38
+normal! 0
 wincmd w
-3wincmd w
-exe 'vert 1resize ' . ((&columns * 110 + 112) / 225)
-exe 'vert 2resize ' . ((&columns * 114 + 112) / 225)
-tabnext 1
+2wincmd w
+exe 'vert 1resize ' . ((&columns * 84 + 86) / 172)
+exe 'vert 2resize ' . ((&columns * 87 + 86) / 172)
+tabnext 2
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf
 endif
