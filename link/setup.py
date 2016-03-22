@@ -8,6 +8,16 @@ http://docs.scipy.org/doc/numpy/reference/distutils.html
 import numpy
 from Cython.Distutils import build_ext
 
+# module name
+modname = 'cython_wrapper'
+# cython builds the 'modname'.cpp file including these 
+# sources in this order:
+depends = [
+    'c_code.cpp',
+    'code2.cpp', 
+    'code3.cpp',
+]
+
 def configuration(parent_package='', top_path=None):
     """ Function used to build our configuration.
     """
@@ -16,12 +26,15 @@ def configuration(parent_package='', top_path=None):
     # The configuration object that hold information on all the files
     # to be built.
     config = Configuration('', parent_package, top_path)
-    config.add_extension('cython_wrapper',
-                         sources=['cython_wrapper.pyx'],
+    config.add_extension(modname,
+                         sources=['%s.pyx'%modname],
                          language="c++",
                          # libraries=['m'],
-                         depends=['c_code.cpp'],
-                         include_dirs=[numpy.get_include()])
+                         depends=depends, 
+                         include_dirs=[numpy.get_include(), '.'],
+                         #libraries=['code2',],
+                         #library_dirs=['.']
+                         )
     return config
 
 

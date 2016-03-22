@@ -5,7 +5,9 @@
  */
 
 #include <stdlib.h>
-
+#include <stdio.h>
+#include "code2.h"
+//void myfunc(double*);
 
 void LiberaMat(double **Mat, int i){ 
     int k;
@@ -107,6 +109,9 @@ double *compute_2d_ii(int nx, int ny){
             array[i][j] = 1.*(i+j);
         }
     }
+    double a;
+    myfunc(&a);
+    printf(" -------> a: %g\n", a);
     return &(array[0][0]); //&array[0];
 }
 

@@ -15,6 +15,12 @@ cdef extern from "c_code.cpp":
     double **compute_2d(int nx, int ny)
     double *compute_2d_ii(int nx, int ny)
 
+cdef extern from "code2.cpp":
+    double *ret_1d_array(double value_a, int na)
+
+cdef extern from "code3.cpp":
+    void myfunc3(double*)
+
 from libc.stdlib cimport free
 from cpython cimport PyObject, Py_INCREF
 
@@ -120,6 +126,8 @@ def py_compute(int size):
 
 
 def py_compute_2d(int nx, int ny):
+    """ uses 'compute_2d' from c_code.cpp
+    """
     cdef double **array
     cdef np.ndarray ndarray
     # Call the C function
@@ -153,5 +161,27 @@ def py_compute_2d_ii(int nx, int ny):
     # C, and Python does not know that there is this additional reference
     Py_INCREF(array_wrapper)
     #Py_INCREF(array_wrapper)
+    
+    
 
     return ndarray
+
+
+def create_1d_array(val_a, na):
+    cdef double *a #aa=6.66
+    a = ret_1d_array(val_a, na)
+
+    cdef np.ndarray ndarray
+    array_wrapper = ArrayWrapper()
+    array_wrapper.set_data(na, <void*> a) 
+    ndarray = np.array(array_wrapper, copy=False)
+    # Assign our object to the 'base' of the ndarray object
+    ndarray.base = <PyObject*> array_wrapper
+    # Increment the reference count, as the above assignement was done in
+    # C, and Python does not know that there is this additional reference
+    Py_INCREF(array_wrapper)
+    #print " ---> aa (@cython): ", (*aa)
+    return ndarray
+
+
+#EOF
