@@ -47,6 +47,16 @@ cdef class jimmy:
         def __get__(self):      return self._thisptr.aa
         def __set__(self, v):   self._thisptr.aa = v
 
+    property var:
+        def __get__(self):
+            a = {
+                'aa': self._thisptr.aa,
+                'a': self._thisptr.a,
+                'b': self._thisptr.b,
+            }
+            return a
+        #def __set__(self, v):
+
 
 
     #cdef double self.aa = double(self._thisptr.a)
