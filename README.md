@@ -1,5 +1,10 @@
 # cython
-oriented for simulations &amp;&amp; data processing
+oriented for simulations &amp;&amp; data processing.
+Modules are the following.
+
+---
+### **nr3**:
+cythonized VecDoub version of nr3.h (numerical recipes lib) types. Using .pyx and .pxd files.
 
 
 ---
